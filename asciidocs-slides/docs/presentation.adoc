@@ -1,0 +1,5 @@
+:revealjsdir: reveal.js
+:revealjs_theme: sky
+:imagesdir: images
+
+= Docker
