@@ -3,14 +3,16 @@
 = Docker
 
 == Warum braucht man Docker
+Docker gibt uns die Möglichkeit, Anwendungen in sogenannten Containern auszuführen. Diese Container können aufeinander aufbauen und miteinander kommunizieren. Beispiele für diese Anwendungen wären zum Beispiel ein Quarkus oder eine PostgreSQL Datenbank.
+
+Der Unterschied zu normalen virtuellen Maschinen liegt darin, dass nicht jeder Container ein komplettes Betriebssystem – zum Beispiel Ubuntu 14.04 – mitbringen muss sondern nur die wichtigen Daten für die Anwendung enthält. Wollen wir den Webserver vom Datenbankserver trennen müssten wir also zwei komplette virtuelle Maschinen inklusive Betriebssystem starten. In Docker sind das einfach zwei unabhängige Container, die die jeweiligen Server starten.
+
+In der Webentwicklung bringt uns das einen entscheidenden Vorteil: Wir können die Serverumgebung, auf der später unsere Webanwendung laufen wird, genau auf unserem eigenen Rechner nachbilden – egal ob dieser mit Windows, Linux oder OS X läuft. Kompatibilitätsprobleme gehören damit also der Vergangenheit an. Außerdem können wir die Docker Container ganz einfach an Teamkollegen weitergeben, damit alle am selben Strang ziehen und auf derselben Umgebung entwickeln.
 == Verwenden von Containern
 === Was ist ein Container
 === Docker Hub
 === Container von innen
 === Volumes und Bind Mount
-== Docker Networks
-=== Basics
-=== DNS innerhalb von Netzwerken
 == Images
 === Was ist ein Image
 === Dockerfile
@@ -18,3 +20,6 @@
 == Docker-Compose
 === Was ist das und wozu dient es
 === Docker-Compose File
+=== Docker Networks
+=== Basics
+=== DNS innerhalb von Netzwerken

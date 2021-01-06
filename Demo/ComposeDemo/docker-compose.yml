@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+
+  postgres:
+    image: postgres:12
+    restart: always
+    environment:
+        - POSTGRES_PASSWORD=sicheres123Passwort
+    ports:
+        - 5432:5432
+    volumes:
+        - ./database/dbscripts/:/docker-entrypoint-initdb.d
+        - postgres_data:/var/lib/postgresql/data
+    networks: 
+        - fitavari_network
+
+  quarkus:
+    build:
+        context: ./fitervari_backend
+        dockerfile: src/main/docker/Dockerfile.native
+    ports:
+        - 8080:8080
+    networks: 
+        - fitavari_network
+        
+volumes:
+    postgres_data:
+networks: 
+    fitavari_network:
