@@ -5,21 +5,72 @@
 == Warum braucht man Docker
 Docker gibt uns die Möglichkeit, Anwendungen in sogenannten Containern auszuführen. Diese Container können aufeinander aufbauen und miteinander kommunizieren. Beispiele für diese Anwendungen wären zum Beispiel ein Quarkus oder eine PostgreSQL Datenbank.
 
-Der Unterschied zu normalen virtuellen Maschinen liegt darin, dass nicht jeder Container ein komplettes Betriebssystem – zum Beispiel Ubuntu 14.04 – mitbringen muss sondern nur die wichtigen Daten für die Anwendung enthält. Wollen wir den Webserver vom Datenbankserver trennen müssten wir also zwei komplette virtuelle Maschinen inklusive Betriebssystem starten. In Docker sind das einfach zwei unabhängige Container, die die jeweiligen Server starten.
+Der Unterschied zu normalen virtuellen Maschinen liegt darin, dass nicht jeder Container ein komplettes Betriebssystem – zum Beispiel Ubuntu – mitbringen muss sondern nur die wichtigen Daten für die Anwendung enthält. Wollen wir den Webserver vom Datenbankserver trennen müssten wir also zwei komplette virtuelle Maschinen inklusive Betriebssystem starten. In Docker sind das einfach zwei unabhängige Container, die die jeweiligen Server starten.
 
 In der Webentwicklung bringt uns das einen entscheidenden Vorteil: Wir können die Serverumgebung, auf der später unsere Webanwendung laufen wird, genau auf unserem eigenen Rechner nachbilden – egal ob dieser mit Windows, Linux oder OS X läuft. Kompatibilitätsprobleme gehören damit also der Vergangenheit an. Außerdem können wir die Docker Container ganz einfach an Teamkollegen weitergeben, damit alle am selben Strang ziehen und auf derselben Umgebung entwickeln.
+
 == Verwenden von Containern
+
 === Was ist ein Container
-=== Docker Hub
-=== Container von innen
+Ein Container ist eine Standardeinheit von Software, die Code und alle seine Abhängigkeiten zusammenfasst, damit die Anwendung schnell und zuverlässig von einer Computerumgebung zur anderen ausgeführt werden kann. Ein Docker-Container-Image ist ein leichtes, eigenständiges, ausführbares Softwarepaket, das alles enthält, was zum Ausführen einer Anwendung erforderlich ist: Code, Laufzeit, Systemtools, Systembibliotheken und Einstellungen.
+
 === Volumes und Bind Mount
+Bind Mounts: Ein Bind Mount ist eine Datei oder ein Ordner, die bzw. der irgendwo im Container-Host-Dateisystem gespeichert und in einen laufenden Container eingebunden ist. Der Hauptunterschied zwischen einem Bind-Mount und einem Volume besteht darin, dass Prozesse außerhalb von Docker ihn auch ändern können, da er überall im Host-Dateisystem vorhanden sein kann.
+
+Volumes: Volumes sind die bevorzugte Methode zum Speichern persistenter Daten, die Docker-Container erstellen oder verwenden. Das Host-Dateisystem speichert auch Volumes, ähnlich wie beim Binden von Mounts. Docker verwaltet sie jedoch vollständig und speichert sie.
+
 == Images
+
 === Was ist ein Image
+Ein Docker Image ist wie eine Klasse:
+
+    * es ist wie ein Muster, eine Vorlage
+
+    * mit einem Image alleine kann man nichts anfangen
+
+    * von einem Image können mehrere Container erstellt werden
+
+    * Ein Image verbraucht keine CPU-Zeit, da es nicht läuft
+
 === Dockerfile
-=== Bauen von Dockerfiles
+* Bauplan für ein Images
+* Ist in einer deklarativen Sprache geschrieben
+
 == Docker-Compose
 === Was ist das und wozu dient es
+Docker Compose it ein Tool, mit dem die Bereitstellung vieler verschiedener Docker-Container zentral verwaltet werden kann. Gerade für Microservices ist dies praktisch, da sich jeder Service problemlos in einem separat verwalteten Container befinden kann.
+
 === Docker-Compose File
-=== Docker Networks
+Die Konfiguration für eine Docker-Compose-Datei erfolgt in docker-compose.yml. Außerdem ist es egal wo diese abgespeichert wird außer in der Dockerfile wernden Images geebaut.
+
+== Docker Networks
 === Basics
-=== DNS innerhalb von Netzwerken
+Docker Netzwerke sind viruelle Netzwerke, in Welche man Container packen kann.
+Diese Netzwerke können so konfiguriert werden, dass Container vollständig isoliert werden, sodass Webanwendungen erstellt werden können, die sicher zusammenarbeiten, ohne das dabei alle Container von außen erreichbar sind.
+Innerhalb von Netzwerken kommunizieren Container über DNS. Der Container ist unter seinem eigenen Namen im Netzwerk erreichbar. Um ihn auf einem Port anzusprechen muss dann immer der eigentliche Port verwenden. Ports die auf localhost gebunden sind funktionieren logischerweise nicht.
+
+image::dockerNetwork.png[]
+
+Standart Netzwerke:
+
+* bridge: Standard-Network
+* none: kein Netzwerk
+* host: hängt im Netzwerk des hosts
+
+== Quellen
+
+* https://www.udemy.com/course/docker-mastery/
+
+* https://www.claranet.de/blog/2018-04-12-wie-funktionieren-docker-container
+
+* https://docs.docker.com
+
+* https://hub.docker.com
+
+* https://www.ab-heute-programmieren.de/docker-teil-1-was-ist-docker/
+
+* https://www.docker.com/resources/what-container
+
+* https://htl-leonding-college.github.io/docker-lecture-notes/schilf-stropek-2020-10-12.html#_docker_images
+
+* https://4sysops.com/archives/introduction-to-docker-bind-mounts-and-volumes/

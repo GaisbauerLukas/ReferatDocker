@@ -8,6 +8,9 @@ docker run -p 8080:80 --name nginx -d nginx
 # mit --name kann man den Namen eines Containers festlegen
 # -d startet den Container als hintergrund Prozess
 
+#In den Container hineinschauen
+docker exec -it nginx bash
+
 # Löschen des Containers
 docker stop nginx && docker rm nginx
 #or
